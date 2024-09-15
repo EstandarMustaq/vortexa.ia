@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3"  
+    "bootstrap-icons": "^1.11.3",  
     "axios": "^1.7.2",
     "mongoose": "^6.0.14",
     "next": "^14.2.5",
