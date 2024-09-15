@@ -156,7 +156,7 @@ export default function Home() {
                   Vortexa
                 </h5>
                 <p className="text-muted">Versão: 1.0</p>
-                <p className="short-line-spacing"><span className="bi bi-sourceforge me-2 lab-logo"></span>Envision Lab Development</p>
+                <p className="short-line-spacing"><span className="bi bi-sourceforge me-2 lab-logo"></span>by (e.m) · Estandar Mustaq</p>
               </div>
             )}
           </div>
