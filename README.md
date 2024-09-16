@@ -15,7 +15,7 @@ A aplicação é composta por duas partes principais:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/usuario/vortexa.ia.git
+git clone https://github.com/EstandarMustaq/vortexa.ia.git
 cd vortexa.ia
 ```
 
