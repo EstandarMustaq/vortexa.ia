@@ -18,3 +18,11 @@ A aplicação é composta por duas partes principais:
 git clone https://github.com/usuario/vortexa.ia.git
 cd vortexa.ia
 
+instalando as dependencias
+npm install
+
+executando o servidor nodejs
+next dev
+
+
+
