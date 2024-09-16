@@ -1,6 +1,8 @@
 {
   "name": "vortexa",
   "version": "1.0.0",
+  "description": "vortexa e uma IA baseada no modelo gpt-4o",
+  "author": "Estandar Mustaq <mustaqueestandarjunior@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,9 +10,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",  
+  "dependencies": { 
     "axios": "^1.7.2",
     "mongoose": "^6.0.14",
     "next": "^14.2.5",

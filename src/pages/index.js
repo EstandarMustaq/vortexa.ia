@@ -88,8 +88,8 @@ export default function Home() {
     <>
       <Head>
         <title>Vortexa</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+        <link rel="shortcut icon" href="../../public/ai-default-avatar.png" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="../../public/ai-default-logo.png" />
       </Head>
       <div className="container">
         <button id="toggleTheme" className="btn btn-outline-light toggle-theme-btn" onClick={toggleTheme}>
