@@ -17,12 +17,20 @@ A aplicação é composta por duas partes principais:
 ```bash
 git clone https://github.com/usuario/vortexa.ia.git
 cd vortexa.ia
+```
 
-instalando as dependencias
+### 2. instale as dependencias do projeto
+
+```bash
 npm install
+```
+### 3. inicie o servidor nodejs com o comando
 
-executando o servidor nodejs
+```bash
 next dev
+```
+### 4 acesse a porta no seu navegador 
 
-
+```bash
+https://localhost:3000
 
