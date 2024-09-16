@@ -1,6 +1,6 @@
 # Vortexa IA Documentation
 
-Esta é uma aplicação que utiliza **Next.js**, **React.js** e a **API da OpenAI** com o modelo **GPT-4** para fornecer uma interface interativa, onde os usuários podem fazer perguntas e obter respostas.
+A **Next.js**, **React.js** e a API OpenAI com o modelo GPT-4 são as tecnologias usadas nesta aplicação que apresenta uma interface interativa onde os utilizadores colocam questões e recebem respostas.
 
 ## Estrutura do Projeto
 
