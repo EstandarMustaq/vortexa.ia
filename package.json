@@ -1,7 +1,7 @@
 {
   "name": "vortexa",
   "version": "1.0.0",
-  "description": "vortexa e uma IA baseada no modelo gpt-4o",
+  "description": "vortexa é uma IA baseada no modelo gpt-4o",
   "author": "Estandar Mustaq <mustaqueestandarjunior@gmail.com>",
   "private": true,
   "scripts": {
