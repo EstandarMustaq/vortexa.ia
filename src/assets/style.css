@@ -1,5 +1,5 @@
 @charset "UFT-8";
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
 body {
   background-color: var(--bg-color, #f8f9fa);
@@ -7,7 +7,7 @@ body {
   padding-top: 20px;
   margin: 0;
   overflow-x: hidden; /* Evita rolagem horizontal */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -22,7 +22,7 @@ body {
 
 .chat-container {
   border: 1px solid var(--border-color, #dee2e6);
-  border-radius: 15px;
+  border-radius: 10px;
   background: var(--chat-bg-color, #ffffff);
   padding: 20px;
   height: 76%;
@@ -34,9 +34,9 @@ body {
   transition: margin-right 0.3s ease; /* Transição suave para ajustar a largura */
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767.99px) {
   .chat-container {
-    height: 70% !important;
+    height: 68% !important;
   }
 }
 
@@ -65,7 +65,7 @@ body {
 }
 
 .message::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 0;
@@ -154,7 +154,7 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -290px; 
+  right: -290px;
   width: 290px;
   height: 100%;
   background-color: var(--chat-bg-color, #ffffff);
@@ -164,7 +164,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: right 0.3s ease;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .sidebar.open {
@@ -208,8 +208,12 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .btn-outline-light {
@@ -257,18 +261,14 @@ body {
   z-index: 1001;
 }
 
-.profile-info, .text-muted {
+.profile-info,
+.text-muted {
   font-size: 0.9em;
-
 }
 
-.porfile-info, .short-line-spacing {
+.porfile-info,
+.short-line-spacing {
   line-height: 0.2em;
-}
-
-.porfile-info, .lab-logo {
-  font-size: 20px;
-  color: orange;
 }
 
 .profile-info.visible {
@@ -335,17 +335,3 @@ body {
 .alert-custom .close-btn:hover {
   color: #000;
 }
-
-.mt-text {
-  margin-top: -10px;
-}
-
-
-.share-menu {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-
-

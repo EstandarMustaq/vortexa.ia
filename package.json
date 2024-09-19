@@ -1,7 +1,7 @@
 {
   "name": "vortexa",
-  "version": "1.0.0",
-  "description": "vortexa é uma IA baseada no modelo gpt-4o",
+  "version": "0.2.0",
+  "description": "vortexa é uma IA baseada em API replicate ai",
   "author": "Estandar Mustaq <mustaqueestandarjunior@gmail.com>",
   "private": true,
   "scripts": {
@@ -10,15 +10,14 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": { 
+  "dependencies": {
+    "ai": "^3.3.40",
     "axios": "^1.7.2",
     "mongoose": "^6.0.14",
     "next": "^14.2.5",
-    "nock": "^13.5.4",
-    "openai": "^4.52.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-share": "^5.1.0"
+    "replicate": "^0.33.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
