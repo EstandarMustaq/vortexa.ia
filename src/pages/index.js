@@ -230,7 +230,7 @@ export default function Home() {
     spinner.style.display = "inline-block";
 
     // Enviar a mensagem para a API
-    const response = await fetch("/api/predictions", {
+    const response = await fetch("/api/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: userMessage }),
