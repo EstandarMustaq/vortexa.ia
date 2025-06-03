@@ -35,7 +35,7 @@ body {
 
 @media (max-width: 767.99px) {
   .chat-container {
-    height: 68% !important;
+    height: 65% !important;
   }
 }
 
@@ -102,7 +102,8 @@ body {
 .form-control {
   border-radius: 25px;
   box-shadow: none !important;
-  padding: 14px;
+  padding: 13px;
+  color: var(--text-color, #000000);
 }
 
 .form-control:hover {
@@ -127,7 +128,7 @@ body {
 }
 
 .icon-large { 
-  font-size: 1.7em;
+  font-size: 1.6em;
 }
 
 .spinner-border {
@@ -138,7 +139,7 @@ body {
   border-width: 0.2em;
 }
 
-.btn-processing .icon {
+.btn-processing .icon-large {
   display: none;
 }
 

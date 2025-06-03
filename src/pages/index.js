@@ -195,12 +195,12 @@ export default function Home() {
         <form id="queryForm" className="input-group" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="form-control bg-transparent"
+            className="form-control bg-transparent border-left-0"
             id="queryInput"
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-outline-light border-left-0">
+          <button type="submit" className="btn btn-outline-light">
             <i className="bi bi-arrow-right-circle-fill icon-large"></i>
             <div
               className="spinner-border"
@@ -227,7 +227,7 @@ export default function Home() {
     const chatContainer = document.getElementById("chatContainer");
     const typingIndicator = document.getElementById("typingIndicator");
     const sendButton = document.querySelector('button[type="submit"]');
-    const icon = sendButton.querySelector(".icon");
+    const icon = sendButton.querySelector(".icon-large");
     const spinner = sendButton.querySelector(".spinner-border");
     const userMessage = queryInput.value;
 
@@ -243,7 +243,7 @@ export default function Home() {
     // Mostrar o indicador de digitação e spinner de processamento
     typingIndicator.style.display = "block";
     sendButton.classList.add("btn-processing");
-    icon.style.display = "none";
+    icon-large.style.display = "none";
     spinner.style.display = "inline-block";
 
     // Enviar a mensagem para a API
