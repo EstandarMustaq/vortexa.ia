@@ -37,15 +37,13 @@ export default function Home() {
 
   const applyTheme = (selectedTheme) => {
     const isDarkMode = selectedTheme === "dark";
-    const style = document.documentElement.style;
-    style.setProperty("--bg-color", isDarkMode ? "#343a40" : "#f8f9fa");
-    style.setProperty("--text-color", isDarkMode ? "#ffffff" : "#000000");
-    style.setProperty("--chat-bg-color", isDarkMode ? "#495057" : "#ffffff");
-    style.setProperty("--border-color", isDarkMode ? "#6c757d" : "#dee2e6");
-    style.setProperty("--user-msg-bg", "#007bff");
-    style.setProperty("--user-msg-text", "#ffffff");
-    style.setProperty("--ai-msg-bg", "transparent");
-    style.setProperty("--ai-msg-text", isDarkMode ? "#ffffff" : "#000000");
+    const body = document.body;
+
+    if (isDarkMode) {
+      body.classList.add("dark-mode");
+    } else {
+      body.classList.remove("dark-mode");
+    }
   };
 
   const toggleTheme = () => {
@@ -240,7 +238,7 @@ export default function Home() {
                             className="copy-button"
                             onClick={() => navigator.clipboard.writeText(codeText)}
                           >
-                            <i className="bi bi-copy"></i> copiar o código
+                            <span className="bi bi-copy"></span> copiar o código
                           </button>
                           <SyntaxHighlighter
                             language={language}
