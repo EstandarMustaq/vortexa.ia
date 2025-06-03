@@ -243,7 +243,7 @@ export default function Home() {
     // Mostrar o indicador de digitação e spinner de processamento
     typingIndicator.style.display = "block";
     sendButton.classList.add("btn-processing");
-    icon-large.style.display = "none";
+    icon.style.display = "none";
     spinner.style.display = "inline-block";
 
     // Enviar a mensagem para a API
@@ -265,7 +265,7 @@ export default function Home() {
     // Ocultar o indicador de digitação e spinner de processamento
     typingIndicator.style.display = "none";
     sendButton.classList.remove("btn-processing");
-    icon-large.style.display = "inline-block";
+    icon.style.display = "inline-block";
     spinner.style.display = "none";
 
     // Adicionar a resposta da IA ao chat
