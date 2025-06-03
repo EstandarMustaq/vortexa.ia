@@ -13,11 +13,12 @@
   "dependencies": {
     "groq-sdk": "^0.23.0",
     "mongoose": "^6.0.14",
-    "next": "^14.2.5",
+    "next": "^15.3.3",
     "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
