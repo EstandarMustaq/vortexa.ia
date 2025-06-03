@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.2;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -57,7 +57,7 @@ body.dark-mode {
   border: none;
   color: inherit;
   cursor: pointer;
-  padding: 6px;
+  padding: 12px;
   border-radius: 30px;
   transition: background-color 0.2s;
 }
@@ -122,11 +122,11 @@ body.dark-mode .sidebar {
 .close-sidebar-btn {
   align-self: flex-end;
   background: transparent;
-  font-size: 1.4em;
+  font-size: 1em;
   cursor: pointer;
   color: inherit;
   border: none;
-  padding: 6px;
+  padding: 8px;
   border-radius: 30px;
   transition: background-color 0.2s;
 }
@@ -304,7 +304,7 @@ body.dark-mode .text-muted {
 .message.user {
   background-color: var(--user-msg-bg);
   color: var(--user-msg-text);
-  align-self: flex-end;
+  align-self: flex-end !important;
   border-bottom-right-radius: 0;
   max-width: 75%;
 }
@@ -321,7 +321,9 @@ body.dark-mode .text-muted {
   max-width: 100%;
   line-height: 1.4em;
   white-space: pre-wrap;
-  padding-left: 40px; /* Espaço para ícone */
+  padding-left: 40px; /* Espaço para o ícone */
+  position: relative;
+  bottom: 20px;  
 }
 
 body.dark-mode .message.ai {
@@ -331,9 +333,9 @@ body.dark-mode .message.ai {
 /* Ícone da IA em círculo */
 .message.ai i {
   position: absolute;
-  top: 50%;
+  top: 8px;  
   left: 10px;
-  transform: translateY(-50%);
+  transform: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -400,13 +402,13 @@ body.dark-mode .copy-button {
 }
 
 .code-block {
-  background-color: var(--ai-msg-bg);
+  background-color: var(--ai-msg-bg) !important;
   padding: 12px;
-  border-radius: 5px;
+  border-radius: 5px !important;
   overflow-x: auto;
   font-family: Consolas, "Courier New", monospace;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.2;
   margin-top: 4px;
   transition: background-color 0.3s;
 }
@@ -417,7 +419,7 @@ body.dark-mode .code-block {
 }
 
 .code-block code {
-  background: none;
+  background: none !important;
   padding: 0;
 }
 
@@ -437,7 +439,7 @@ body.dark-mode .typing-indicator {
 /* INPUT FLUTUANTE NO RODAPÉ */
 .input-form {
   position: fixed;
-  bottom: 0;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -449,6 +451,7 @@ body.dark-mode .typing-indicator {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   transition: background-color 0.3s, border-color 0.3s;
+  border-radius: 25px;
 }
 
 body.dark-mode .input-form {
