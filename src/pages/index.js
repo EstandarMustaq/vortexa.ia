@@ -195,12 +195,12 @@ export default function Home() {
         <form id="queryForm" className="input-group" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="form-control bg-transparent border-left-0"
+            className="form-control bg-light border-right-0"
             id="queryInput"
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-outline-light">
+          <button type="submit" className="btn btn-light">
             <i className="bi bi-arrow-right-circle-fill icon-large"></i>
             <div
               className="spinner-border"
@@ -265,7 +265,7 @@ export default function Home() {
     // Ocultar o indicador de digitação e spinner de processamento
     typingIndicator.style.display = "none";
     sendButton.classList.remove("btn-processing");
-    icon.style.display = "inline-block";
+    icon-large.style.display = "inline-block";
     spinner.style.display = "none";
 
     // Adicionar a resposta da IA ao chat
