@@ -195,12 +195,12 @@ export default function Home() {
         <form id="queryForm" className="input-group" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="form-control"
+            className="form-control bg-transparent"
             id="queryInput"
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-outline-light">
+          <button type="submit" className="btn btn-outline-light border-left-0">
             <i className="bi bi-arrow-right-circle-fill icon-large"></i>
             <div
               className="spinner-border"
