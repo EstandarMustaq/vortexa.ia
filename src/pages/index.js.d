@@ -1,18 +1,13 @@
 // pages/index.js
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 export default function Home() {
   const [theme, setTheme] = useState("light"); // Tema atual
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [chatHistory, setChatHistory] = useState([]); // histórico em estado
+  const [chatHistory, setChatHistory] = useState([]);
   const [profileVisible, setProfileVisible] = useState(false);
   const [alert, setAlert] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const chatContainerRef = useRef(null);
 
   useEffect(() => {
     // Carregar histórico de chats do localStorage quando o componente é montado
@@ -30,14 +25,7 @@ export default function Home() {
   useEffect(() => {
     // Salvar o histórico de chats no localStorage sempre que ele for atualizado
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
-    scrollToBottom();
   }, [chatHistory]);
-
-  const scrollToBottom = () => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  };
 
   const applyTheme = (selectedTheme) => {
     const isDarkMode = selectedTheme === "dark";
@@ -59,7 +47,10 @@ export default function Home() {
     );
     document.documentElement.style.setProperty("--user-msg-bg", "#007bff");
     document.documentElement.style.setProperty("--user-msg-text", "#ffffff");
-    document.documentElement.style.setProperty("--ai-msg-bg", "transparent");
+    document.documentElement.style.setProperty(
+      "--ai-msg-bg",
+      isDarkMode ? "#6c757d" : "#e9ecef"
+    );
     document.documentElement.style.setProperty(
       "--ai-msg-text",
       isDarkMode ? "#ffffff" : "#000000"
@@ -82,9 +73,8 @@ export default function Home() {
     showAlert("Histórico excluído com sucesso!", "success");
   };
 
-  // mantem o estado limpo
   const newChat = () => {
-    setChatHistory([]);
+    document.getElementById("chatContainer").innerHTML = "";
   };
 
   const shareChat = () => {
@@ -113,70 +103,29 @@ export default function Home() {
     setProfileVisible(!profileVisible);
   };
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const queryInput = document.getElementById("queryInput");
-    const userMessage = queryInput.value.trim();
-    if (!userMessage) return;
-
-    // Adicionar a mensagem do usuário ao estado
-    setChatHistory((prev) => [...prev, { user: userMessage, ai: "" }]);
-    setLoading(true);
-    queryInput.value = "";
-
-    try {
-      const response = await fetch("/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: userMessage }),
-      });
-
-      const result = await response.json();
-      setChatHistory((prev) => {
-        const copy = [...prev];
-        copy[copy.length - 1].ai = result.response;
-        return copy;
-      });
-    } catch (err) {
-      console.error("Erro na requisição:", err);
-      setChatHistory((prev) => {
-        const copy = [...prev];
-        copy[copy.length - 1].ai =
-          "Desculpe, não consegui processar sua mensagem.";
-        return copy;
-      });
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
     <>
       <Head>
         <title>Vortexa</title>
       </Head>
       <div className="container">
-        {/* Toggle Theme */}
         <button
           id="toggleTheme"
           className="btn btn-outline-light toggle-theme-btn"
           onClick={toggleTheme}
         >
-          <i className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}></i>
+          <i
+            className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}
+          ></i>
         </button>
-
-        {/* Toggle Sidebar */}
         <button
           id="toggleSidebar"
           className="btn btn-outline-light toggle-sidebar-btn"
           onClick={toggleSidebar}
         >
-          <i className="bi bi-layout-sidebar-reverse icon"></i>
+          <i className={`bi bi-layout-sidebar-reverse icon`}></i>
         </button>
-
         <h1 className="mb-4">Vortexa</h1>
-
-        {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <button
             className="btn btn-outline-light close-sidebar-btn mb-btn"
@@ -196,7 +145,6 @@ export default function Home() {
           <button className="btn btn-outline-light" onClick={shareChat}>
             <i className="bi bi-share-fill icon me-2"></i>Compartilhar Chat
           </button>
-
           <div className="history-container" id="historyContainer">
             <h2 className="text-center mt-4">Histórico de Conversas</h2>
             <div id="history">
@@ -208,7 +156,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-
           <div className="profile-container">
             <button className="profile-button" onClick={handleProfileClick}>
               <span>Vortexa</span>
@@ -218,95 +165,50 @@ export default function Home() {
                 <h5 className="d-flex align-items-center">Vortexa</h5>
                 <p className="text-muted">Versão 0.7.3-beta</p>
                 <p className="short-line-spacing">Powered by EstandarMustaq</p>
-                <a
+		<a
                   href="https://github.com/EstandarMustaq"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="d-flex align-items-center github-profile-link"
                 >
-                  <div className="github-avatar-wrapper" style={{ marginRight: "8px" }}>
-                    <Image
-                      src="https://avatars.githubusercontent.com/EstandarMustaq"
-                      alt="Foto de perfil do EstandarMustaq no GitHub"
-                      className="github-avatar"
-                      width="32"
-                      height="32"
-                    />
-		  </div>
+                  <img
+                    src="https://avatars.githubusercontent.com/EstandarMustaq"
+                    alt="Foto de perfil do EstandarMustaq no GitHub"
+                    className="github-avatar"
+                    width="32"
+                    height="32"
+                    style={{
+                      borderRadius: "50%",
+                      marginRight: "8px"
+                    }}
+                  />
                   <span>GitHub Profile</span>
                 </a>
               </div>
             )}
           </div>
         </div>
-
-        {/* Chat Container */}
-        <div className="chat-container" id="chatContainer" ref={chatContainerRef}>
-          {chatHistory.map((chat, index) => (
-            <div key={index}>
-              <div className="message user">
-                <i className="bi bi-person-fill me-2"></i>
-                {chat.user}
-              </div>
-              <div className="message ai">
-                <i className="bi bi-brilliance me-2"></i>
-                {/* Renderiza a resposta da IA como Markdown */}
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    code({ node, inline, className, children, ...props }) {
-                      const codeText = String(children).replace(/\n$/, "");
-                      return (
-                        <div className="code-block-wrapper">
-                          <button
-                            className="copy-button"
-                            onClick={() => navigator.clipboard.writeText(codeText)}
-                          >
-			    <i className="bi bi-copy me-2"></i>
-                            Copiar
-                          </button>
-                          <pre className="code-block">
-                            <code {...props}>{children}</code>
-                          </pre>
-                        </div>
-                      );
-                    },
-                  }}
-                >
-                  {chat.ai}
-                </ReactMarkdown>
-              </div>
-            </div>
-          ))}
+        <div className="chat-container" id="chatContainer"></div>
+        <div className="typing-indicator" id="typingIndicator">
+          <i className="bi bi-gear fa-spin"></i> Vortexa está pensando...
         </div>
-
-        {/* Indicador de digitação */}
-        {loading && (
-          <div className="typing-indicator" id="typingIndicator">
-            <i className="bi bi-gear fa-spin"></i> Vortexa está pensando...
-          </div>
-        )}
-
-        {/* Input fixo no rodapé */}
-        <form className="input-form" id="queryForm" onSubmit={handleSubmit}>
+        <form id="queryForm" className="input-group" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="input-field"
+            className="form-control bg-light border-right-0"
             id="queryInput"
             placeholder="Mensagem Vortexa"
-            disabled={loading}
             required
           />
-          <button type="submit" className="send-button" disabled={loading}>
-            {loading ? (
-              <div className="spinner-border" role="status" aria-hidden="true"></div>
-            ) : (
-              <i className="bi bi-arrow-right-circle-fill icon"></i>
-            )}
+          <button type="submit" className="btn btn-form btn-light border-left-0">
+            <i className="bi bi-arrow-right-circle-fill icon"></i>
+            <div
+              className="spinner-border"
+              role="status"
+              aria-hidden="true"
+            ></div>
           </button>
         </form>
-
-        {/* Alerta customizado */}
         {alert && (
           <div className={`alert-custom ${alert.type}`}>
             {alert.message}
@@ -318,5 +220,65 @@ export default function Home() {
       </div>
     </>
   );
-}
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const queryInput = document.getElementById("queryInput");
+    const chatContainer = document.getElementById("chatContainer");
+    const typingIndicator = document.getElementById("typingIndicator");
+    const sendButton = document.querySelector('button[type="submit"]');
+    const icon = sendButton.querySelector(".icon");
+    const spinner = sendButton.querySelector(".spinner-border");
+    const userMessage = queryInput.value;
+
+    // Adicionar a mensagem do usuário ao chat
+    const userMessageElement = document.createElement("div");
+    userMessageElement.classList.add("message", "user");
+    userMessageElement.innerHTML = `<i class="bi bi-person-fill me-2" style="font-size: 20px;"></i>${userMessage}`;
+    chatContainer.appendChild(userMessageElement);
+
+    // Limpar o campo de entrada
+    queryInput.value = "";
+
+    // Mostrar o indicador de digitação e spinner de processamento
+    typingIndicator.style.display = "block";
+    sendButton.classList.add("btn-processing");
+    icon.style.display = "none";
+    spinner.style.display = "inline-block";
+
+    // Enviar a mensagem para a API
+    let aiMessage = "";
+    try {
+      const response = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: userMessage }),
+      });
+
+      const result = await response.json();
+      aiMessage = result.response;
+    } catch (err) {
+      console.error("Erro na requisição:", err);
+      aiMessage = "Desculpe, não consegui processar sua mensagem.";
+    }
+
+    // Ocultar o indicador de digitação e spinner de processamento
+    typingIndicator.style.display = "none";
+    sendButton.classList.remove("btn-processing");
+    icon.style.display = "inline-block";
+    spinner.style.display = "none";
+
+    // Adicionar a resposta da IA ao chat
+    const aiMessageElement = document.createElement("div");
+    aiMessageElement.classList.add("message", "ai");
+    aiMessageElement.innerHTML = `<i class="bi bi-robot me-2" style="font-size: 20px;"></i>${aiMessage}`;
+    chatContainer.appendChild(aiMessageElement);
+
+    // Rolagem automática para o final
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Adicionar a mensagem ao histórico
+    const newHistory = { user: userMessage, ai: aiMessage };
+    setChatHistory((prevHistory) => [...prevHistory, newHistory]);
+  }
+}

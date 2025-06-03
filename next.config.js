@@ -5,7 +5,10 @@ module.exports = {
   reactStrictMode: true,
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    GROQ_API_TOKEN: process.env.GROQ_API_TOKEN,
+  },
+  images: {
+    domains: ["avatars.githubusercontent.com"],
   },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
   webpack: (config, { isServer }) => {
