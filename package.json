@@ -1,7 +1,7 @@
 {
   "name": "vortexa",
-  "version": "0.2.0",
-  "description": "vortexa é uma IA baseada em API replicate ai",
+  "version": "0.7.3-beta",
+  "description": "vortexa é uma IA baseada GROQ",
   "author": "Estandar Mustaq <mustaqueestandarjunior@gmail.com>",
   "private": true,
   "scripts": {
@@ -11,13 +11,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "ai": "^3.3.40",
-    "axios": "^1.7.2",
+    "groq-sdk": "^0.23.0",
     "mongoose": "^6.0.14",
     "next": "^14.2.5",
+    "node-fetch": "^3.3.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "replicate": "^0.33.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

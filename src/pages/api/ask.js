@@ -1,52 +1,68 @@
 // pages/api/ask.js
+import fetch from "node-fetch";
 import { NextApiRequest, NextApiResponse } from "next";
-import replicate from "../../lib/replicate-ai";
+import groq from "../../lib/groq-ai";  
 import dbConnect from "../../lib/dbConnect";
 import Interaction from "../../models/Interaction";
 import { getCachedResponse, setCachedResponse } from "../../lib/cache";
+import systemContent from "./sys/sysCt";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { text } = req.body;
 
-    // Verifica o cache primeiro
+    // 1. Verifica se já existe algo em cache
     const cachedResponse = getCachedResponse(text);
     if (cachedResponse) {
       return res.status(200).json({ response: cachedResponse });
     }
 
     try {
+      // 2. Conecta ao MongoDB
       await dbConnect();
       console.log("Connected to MongoDB");
 
-      // Criação de uma predição no Replicate
-      const response = await replicate.predictions.create({
-        version:
-          "2c1608e18606fad2812020dc541930f2d0495ce32eee50074220b87300bc16e1",
-        input: {
-          prompt: text,
-        },
+      const messages = [
+        { role: "system", content: systemContent },
+        { role: "user", content: text },
+      ];
+
+      // (3.1) Cria a “chat completion” no Groq
+      const chatCompletion = await groq.chat.completions.create({
+        model: "meta-llama/llama-4-scout-17b-16e-instruct",
+        messages: messages,
+        temperature: 1,
+        max_completion_tokens: 1024,
+        top_p: 1,
+        stream: false, 
+        stop: null,
       });
 
-      const aiMessage = response.output; // A mensagem da IA é retornada
+      const aiMessage = chatCompletion.choices?.[0]?.message?.content;
+      if (!aiMessage) {
+        throw new Error("Não foi possível extrair a mensagem do Groq.");
+      }
 
+      //  Salva a interação no MongoDB
       await Interaction.create({
         userMessage: text,
         aiResponse: aiMessage,
       });
 
-      // Armazena a resposta no cache
+      //  Armazena no cache para a próxima vez
       setCachedResponse(text, aiMessage);
 
+      //  Retorna para o front-end
       res.status(200).json({ response: aiMessage });
     } catch (error) {
       console.error("Error:", error);
       res
         .status(500)
-        .json({ error: "An error occurred while processing your request." });
+        .json({ error: "Ocorreu um erro ao processar sua solicitação." });
     }
   } else {
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+

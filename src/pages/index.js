@@ -1,6 +1,4 @@
 // pages/index.js
-// import Image from "next/image";
-// import axios from "axios";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 
@@ -117,7 +115,7 @@ export default function Home() {
           onClick={toggleTheme}
         >
           <i
-            className={`bi ${theme === "dark" ? "bi-moon" : "bi-sun"} icon`}
+            className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}
           ></i>
         </button>
         <button
@@ -165,8 +163,27 @@ export default function Home() {
             {profileVisible && (
               <div className="profile-info">
                 <h5 className="d-flex align-items-center">Vortexa</h5>
-                <p className="text-muted">Versão: 0.2.0-alpha</p>
+                <p className="text-muted">Versão 0.7.3-beta</p>
                 <p className="short-line-spacing">Create By Estandar</p>
+		<a
+                  href="https://github.com/EstandarMustaq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="d-flex align-items-center github-profile-link"
+                >
+                  <img
+                    src="https://avatars.githubusercontent.com/EstandarMustaq"
+                    alt="Foto de perfil do EstandarMustaq no GitHub"
+                    className="github-avatar"
+                    width="32"
+                    height="32"
+                    style={{
+                      borderRadius: "50%",
+                      marginRight: "8px"
+                    }}
+                  />
+                  <span>GitHub Profile</span>
+                </a>
               </div>
             )}
           </div>
@@ -183,8 +200,8 @@ export default function Home() {
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-primary">
-            <i className="bi bi-arrow-up-circle-fill icon"></i>
+          <button type="submit" className="btn btn-outline-secondary">
+            <i className="bi bi-arrow-right-circle-fill icon"></i>
             <div
               className="spinner-border"
               role="status"
@@ -230,14 +247,20 @@ export default function Home() {
     spinner.style.display = "inline-block";
 
     // Enviar a mensagem para a API
-    const response = await fetch("/api/ask", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: userMessage }),
-    });
+    let aiMessage = "";
+    try {
+      const response = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: userMessage }),
+      });
 
-    const result = await response.json();
-    const aiMessage = result.output; // A saída do Replicate é exibida
+      const result = await response.json();
+      aiMessage = result.response;
+    } catch (err) {
+      console.error("Erro na requisição:", err);
+      aiMessage = "Desculpe, não consegui processar sua mensagem.";
+    }
 
     // Ocultar o indicador de digitação e spinner de processamento
     typingIndicator.style.display = "none";

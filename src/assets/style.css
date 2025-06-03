@@ -23,14 +23,13 @@ body {
 .chat-container {
   border: 1px solid var(--border-color, #dee2e6);
   border-radius: 10px;
-  background: var(--chat-bg-color, #ffffff);
+  background: var(--chat-bg-color, #f0f0f0);
   padding: 20px;
   height: 76%;
   width: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: margin-right 0.3s ease; /* Transição suave para ajustar a largura */
 }
 
@@ -44,7 +43,7 @@ body {
   margin-bottom: 15px;
   padding: 10px 15px;
   border-radius: 15px;
-  max-width: 75%;
+  max-width: 80%;
   position: relative;
   word-wrap: break-word;
   animation: fadeIn 0.5s ease-in-out;
@@ -58,7 +57,6 @@ body {
 }
 
 .message.ai {
-  background-color: var(--ai-msg-bg, #e9ecef);
   color: var(--ai-msg-text, #000000);
   align-self: flex-start;
   border-bottom-left-radius: 0;
@@ -81,7 +79,6 @@ body {
 
 .message.ai::after {
   border-width: 10px 0 0 10px;
-  border-color: var(--ai-msg-bg, #e9ecef) transparent transparent transparent;
   bottom: -10px;
   left: 0;
 }
@@ -105,7 +102,11 @@ body {
 
 .form-control {
   border-radius: 25px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
 }
 
 .btn {
@@ -240,7 +241,6 @@ body {
   border-radius: 5px 0 0 0;
   padding: 10px;
   width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .profile-icon {
@@ -335,3 +335,18 @@ body {
 .alert-custom .close-btn:hover {
   color: #000;
 }
+
+.github-profile-link {
+  text-decoration: none;
+  color: inherit;
+  gap: 6px;
+}
+
+.github-profile-link:hover {
+  color: #000; /* escurece no hover */
+}
+
+.github-avatar {
+  object-fit: cover;
+}
+
