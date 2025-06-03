@@ -143,7 +143,7 @@ export default function Home() {
             <i className="bi bi-trash icon me-2"></i>Excluir Histórico
           </button>
           <button className="btn btn-outline-light" onClick={shareChat}>
-            <i className="bi bi-share icon me-2"></i>Compartilhar Chat
+            <i className="bi bi-share-fill icon me-2"></i>Compartilhar Chat
           </button>
           <div className="history-container" id="historyContainer">
             <h2 className="text-center mt-4">Histórico de Conversas</h2>
