@@ -200,8 +200,8 @@ export default function Home() {
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-form btn-light">
-            <i className="bi bi-arrow-right-circle-fill icon-large"></i>
+          <button type="submit" className="btn btn-form btn-light border-left-0">
+            <i className="bi bi-arrow-right-circle-fill icon"></i>
             <div
               className="spinner-border"
               role="status"
@@ -227,7 +227,7 @@ export default function Home() {
     const chatContainer = document.getElementById("chatContainer");
     const typingIndicator = document.getElementById("typingIndicator");
     const sendButton = document.querySelector('button[type="submit"]');
-    const icon = sendButton.querySelector(".icon-large");
+    const icon = sendButton.querySelector(".icon");
     const spinner = sendButton.querySelector(".spinner-border");
     const userMessage = queryInput.value;
 

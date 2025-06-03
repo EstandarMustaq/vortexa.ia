@@ -35,7 +35,7 @@ body {
 
 @media (max-width: 767.99px) {
   .chat-container {
-    height: 65% !important;
+    height: 68% !important;
   }
 }
 
@@ -79,7 +79,7 @@ body {
 
 .message.ai::after {
   border-width: 10px 0 0 10px;
-/*  bottom: -10px; */
+  bottom: -10px; 
   left: 0;
 }
 
@@ -102,7 +102,6 @@ body {
 .form-control {
   border-radius: 25px;
   box-shadow: none !important;
-  padding: 13px;
 }
 
 .form-control:hover {
@@ -115,7 +114,6 @@ body {
 
 .btn {
   border-radius: 30px;
- /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
   position: relative;
   display: flex;
   align-items: center;
@@ -130,10 +128,6 @@ body {
   font-size: 1em;
 }
 
-.icon-large { 
-  font-size: 1.6em;
-}
-
 .spinner-border {
   display: none;
   width: 1.8em;
@@ -142,7 +136,7 @@ body {
   border-width: 0.2em;
 }
 
-.btn-processing .icon-large {
+.btn-processing .icon {
   display: none;
 }
 
