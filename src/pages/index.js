@@ -1,34 +1,30 @@
-// pages/index.js
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+// Importa o SyntaxHighlighter e registro de linguagens
+import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
+import { github as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function Home() {
-  const [theme, setTheme] = useState("light"); // Tema atual
+  const [theme, setTheme] = useState("light");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [chatHistory, setChatHistory] = useState([]); // histórico em estado
+  const [chatHistory, setChatHistory] = useState([]);
   const [profileVisible, setProfileVisible] = useState(false);
   const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
-    // Carregar histórico de chats do localStorage quando o componente é montado
     const savedChats = localStorage.getItem("chatHistory");
-    if (savedChats) {
-      setChatHistory(JSON.parse(savedChats));
-    }
-
-    // Carregar o tema do localStorage ou usar o tema padrão
+    if (savedChats) setChatHistory(JSON.parse(savedChats));
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     applyTheme(savedTheme);
   }, []);
 
   useEffect(() => {
-    // Salvar o histórico de chats no localStorage sempre que ele for atualizado
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
     scrollToBottom();
   }, [chatHistory]);
@@ -41,29 +37,15 @@ export default function Home() {
 
   const applyTheme = (selectedTheme) => {
     const isDarkMode = selectedTheme === "dark";
-    document.documentElement.style.setProperty(
-      "--bg-color",
-      isDarkMode ? "#343a40" : "#f8f9fa"
-    );
-    document.documentElement.style.setProperty(
-      "--text-color",
-      isDarkMode ? "#ffffff" : "#000000"
-    );
-    document.documentElement.style.setProperty(
-      "--chat-bg-color",
-      isDarkMode ? "#495057" : "#ffffff"
-    );
-    document.documentElement.style.setProperty(
-      "--border-color",
-      isDarkMode ? "#6c757d" : "#dee2e6"
-    );
-    document.documentElement.style.setProperty("--user-msg-bg", "#007bff");
-    document.documentElement.style.setProperty("--user-msg-text", "#ffffff");
-    document.documentElement.style.setProperty("--ai-msg-bg", "transparent");
-    document.documentElement.style.setProperty(
-      "--ai-msg-text",
-      isDarkMode ? "#ffffff" : "#000000"
-    );
+    const style = document.documentElement.style;
+    style.setProperty("--bg-color", isDarkMode ? "#343a40" : "#f8f9fa");
+    style.setProperty("--text-color", isDarkMode ? "#ffffff" : "#000000");
+    style.setProperty("--chat-bg-color", isDarkMode ? "#495057" : "#ffffff");
+    style.setProperty("--border-color", isDarkMode ? "#6c757d" : "#dee2e6");
+    style.setProperty("--user-msg-bg", "#007bff");
+    style.setProperty("--user-msg-text", "#ffffff");
+    style.setProperty("--ai-msg-bg", "transparent");
+    style.setProperty("--ai-msg-text", isDarkMode ? "#ffffff" : "#000000");
   };
 
   const toggleTheme = () => {
@@ -82,7 +64,6 @@ export default function Home() {
     showAlert("Histórico excluído com sucesso!", "success");
   };
 
-  // mantem o estado limpo
   const newChat = () => {
     setChatHistory([]);
   };
@@ -96,9 +77,7 @@ export default function Home() {
           url: window.location.href,
         })
         .then(() => showAlert("Compartilhado com sucesso!", "success"))
-        .catch((error) =>
-          showAlert("Erro ao compartilhar: " + error.message, "error")
-        );
+        .catch((error) => showAlert("Erro ao compartilhar: " + error.message, "error"));
     } else {
       showAlert("Compartilhamento não suportado neste navegador.", "error");
     }
@@ -119,7 +98,6 @@ export default function Home() {
     const userMessage = queryInput.value.trim();
     if (!userMessage) return;
 
-    // Adicionar a mensagem do usuário ao estado
     setChatHistory((prev) => [...prev, { user: userMessage, ai: "" }]);
     setLoading(true);
     queryInput.value = "";
@@ -130,7 +108,6 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: userMessage }),
       });
-
       const result = await response.json();
       setChatHistory((prev) => {
         const copy = [...prev];
@@ -141,8 +118,7 @@ export default function Home() {
       console.error("Erro na requisição:", err);
       setChatHistory((prev) => {
         const copy = [...prev];
-        copy[copy.length - 1].ai =
-          "Desculpe, não consegui processar sua mensagem.";
+        copy[copy.length - 1].ai = "Desculpe, não consegui processar sua mensagem.";
         return copy;
       });
     } finally {
@@ -174,7 +150,7 @@ export default function Home() {
           <i className="bi bi-layout-sidebar-reverse icon"></i>
         </button>
 
-        <h1 className="mb-4">Vortexa</h1>
+        <h1>Vortexa</h1>
 
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
@@ -228,11 +204,11 @@ export default function Home() {
                     <Image
                       src="https://avatars.githubusercontent.com/EstandarMustaq"
                       alt="Foto de perfil do EstandarMustaq no GitHub"
+                      width={32}
+                      height={32}
                       className="github-avatar"
-                      width="32"
-                      height="32"
                     />
-		  </div>
+                  </div>
                   <span>GitHub Profile</span>
                 </a>
               </div>
@@ -250,24 +226,30 @@ export default function Home() {
               </div>
               <div className="message ai">
                 <i className="bi bi-brilliance me-2"></i>
-                {/* Renderiza a resposta da IA como Markdown */}
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
                     code({ node, inline, className, children, ...props }) {
+                      const match = /language-(\w+)/.exec(className || "");
+                      const language = match ? match[1] : "texto";
                       const codeText = String(children).replace(/\n$/, "");
                       return (
                         <div className="code-block-wrapper">
+                          <div className="language-label">{language.toUpperCase()}</div>
                           <button
                             className="copy-button"
                             onClick={() => navigator.clipboard.writeText(codeText)}
                           >
-			    <i className="bi bi-copy me-2"></i>
-                            Copiar
+                            <i className="bi bi-copy"></i> copiar o código
                           </button>
-                          <pre className="code-block">
-                            <code {...props}>{children}</code>
-                          </pre>
+                          <SyntaxHighlighter
+                            language={language}
+                            style={codeStyle}
+                            PreTag="div"
+                            customStyle={{ margin: 0, paddingTop: "30px" }}
+                          >
+                            {codeText}
+                          </SyntaxHighlighter>
                         </div>
                       );
                     },
