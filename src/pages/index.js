@@ -200,7 +200,7 @@ export default function Home() {
             placeholder="Mensagem Vortexa"
             required
           />
-          <button type="submit" className="btn btn-light">
+          <button type="submit" className="btn btn-form btn-light">
             <i className="bi bi-arrow-right-circle-fill icon-large"></i>
             <div
               className="spinner-border"

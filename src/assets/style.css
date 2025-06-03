@@ -103,7 +103,6 @@ body {
   border-radius: 25px;
   box-shadow: none !important;
   padding: 13px;
-  color: var(--text-color, #000000);
 }
 
 .form-control:hover {
@@ -123,18 +122,22 @@ body {
   justify-content: center;
 }
 
+.btn-form {
+  border-color: var(--border-color, #dee2e6);
+} 
+
 .icon {
   font-size: 1em;
 }
 
 .icon-large { 
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 .spinner-border {
   display: none;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.8em;
+  height: 1.8em;
   vertical-align: text-bottom;
   border-width: 0.2em;
 }
