@@ -164,7 +164,7 @@ export default function Home() {
               <div className="profile-info">
                 <h5 className="d-flex align-items-center">Vortexa</h5>
                 <p className="text-muted">Versão 0.7.3-beta</p>
-                <p className="short-line-spacing">Create By Estandar</p>
+                <p className="short-line-spacing">Powered by EstandarMustaq</p>
 		<a
                   href="https://github.com/EstandarMustaq"
                   target="_blank"
