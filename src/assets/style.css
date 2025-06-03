@@ -102,7 +102,11 @@ body {
 .form-control {
   border-radius: 25px;
   box-shadow: none !important;
-  padding: 16px;
+  padding: 14px;
+}
+
+.form-control:hover {
+  border-color: none !important;
 }
 
 .form-control:focus {
@@ -119,7 +123,11 @@ body {
 }
 
 .icon {
-  font-size: 1.2em;
+  font-size: 1em;
+}
+
+.icon-large { 
+  font-size: 1.3em;
 }
 
 .spinner-border {

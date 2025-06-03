@@ -201,7 +201,7 @@ export default function Home() {
             required
           />
           <button type="submit" className="btn btn-outline-light">
-            <i className="bi bi-arrow-right-circle-fill icon"></i>
+            <i className="bi bi-arrow-right-circle-fill icon-large"></i>
             <div
               className="spinner-border"
               role="status"
