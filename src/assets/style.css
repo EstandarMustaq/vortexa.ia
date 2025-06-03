@@ -130,8 +130,8 @@ body {
 
 .spinner-border {
   display: none;
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.5em;
+  height: 1.5em;
   vertical-align: text-bottom;
   border-width: 0.2em;
 }
