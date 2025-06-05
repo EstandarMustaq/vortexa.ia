@@ -185,11 +185,12 @@ export default function Home() {
 
           <div className="profile-container">
             <button className="profile-button" onClick={handleProfileClick}>
+              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.3em" }}></i>
               <span>Vortexa</span>
             </button>
             {profileVisible && (
               <div className="profile-info">
-                <h5 className="d-flex align-items-center">Vortexa</h5>
+              {/* <h5 className="d-flex align-items-center">Vortexa</h5> */}
                 <p className="text-muted">Versão 0.7.3-beta</p>
                 <p className="short-line-spacing">Powered by EstandarMustaq</p>
                 <a
@@ -273,9 +274,14 @@ export default function Home() {
             type="text"
             className="input-field"
             id="queryInput"
-            placeholder="Mensagem Vortexa"
+            placeholder="Pergunte alguma coisa"
             disabled={loading}
             required
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
+            aria-label="Digite sua pergunta"
           />
           <button type="submit" className="send-button" disabled={loading}>
             {loading ? (

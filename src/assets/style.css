@@ -2,8 +2,10 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
+/* =================================
+   VARIÁVEIS DE CORES
+   ================================= */
 :root {
-  /* Temas claros/escuros */
   --bg-color-light: #f8f9fa;
   --bg-color-dark: #343a40;
   --text-color-light: #000000;
@@ -19,7 +21,9 @@
   --ai-msg-text-dark: #ffffff;
 }
 
-/* Body e tema */
+/* =================================
+   GERAL
+   ================================= */
 body {
   background-color: var(--bg-color-light);
   color: var(--text-color-light);
@@ -27,7 +31,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -36,7 +40,9 @@ body.dark-mode {
   color: var(--text-color-dark);
 }
 
-/* CONTAINER PRINCIPAL */
+/* =================================
+   CONTAINER PRINCIPAL
+   ================================= */
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -47,43 +53,76 @@ body.dark-mode {
   padding-top: 20px;
 }
 
-/* BOTÕES DE TOGGLE */
-.toggle-theme-btn,
-.toggle-sidebar-btn {
+/* =================================
+   BOTÕES GERAIS
+   ================================= */
+.btn {
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle Theme Button */
+.toggle-theme-btn {
   position: absolute;
-  top: 20px;
+  top: 0;
+  right: 10px;
   font-size: 1.3em;
   background: transparent;
   border: none;
   color: inherit;
   cursor: pointer;
-  padding: 12px;
-  border-radius: 30px;
+  padding: 6px;
   transition: background-color 0.2s;
 }
 
-.toggle-theme-btn:hover,
-.toggle-sidebar-btn:hover {
+/* ==================================
+   TOGGLE THEME BUTTON DISABLED HOVER
+
+
+.toggle-theme-btn:hover {
   background-color: var(--border-color-light);
 }
 
-body.dark-mode .toggle-theme-btn:hover,
-body.dark-mode .toggle-sidebar-btn:hover {
+body.dark-mode .toggle-theme-btn:hover {
   background-color: var(--border-color-dark);
 }
+  ================================== */
 
-.toggle-theme-btn {
-  right: 10px;
-}
-
+/* Toggle Sidebar Button */
 .toggle-sidebar-btn {
-  right: 50px;
+  position: absolute;
+  top: 0;
+  right: 60px;
+  font-size: 1.3em;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 6px;
+  transition: background-color 0.2s;
 }
 
-/* TÍTULO PRINCIPAL COM LINHA HORIZONTAL */
+/* =================================
+   TOGGLE SIDEBAR BUTTON DISABLED HOVER
+
+.toggle-sidebar-btn:hover {
+  background-color: var(--border-color-light) !important;
+}
+
+body.dark-mode .toggle-sidebar-btn:hover {
+  background-color: var(--border-color-dark) !important;
+}
+  ================================= */
+
+/* =================================
+   TÍTULO COM LINHA HORIZONTAL
+   ================================= */
 h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: left;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color-light);
@@ -94,7 +133,9 @@ body.dark-mode h1 {
   border-bottom-color: var(--border-color-dark);
 }
 
-/* SIDEBAR */
+/* =================================
+   SIDEBAR
+   ================================= */
 .sidebar {
   position: fixed;
   top: 0;
@@ -122,13 +163,13 @@ body.dark-mode .sidebar {
 .close-sidebar-btn {
   align-self: flex-end;
   background: transparent;
-  font-size: 1em;
+  font-size: 1.4em;
   cursor: pointer;
-  color: inherit;
+  color: var(--text-color);
   border: none;
-  padding: 8px;
+  padding: 6px;
   border-radius: 30px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.3s;
 }
 
 .close-sidebar-btn:hover {
@@ -137,19 +178,20 @@ body.dark-mode .sidebar {
 
 body.dark-mode .close-sidebar-btn:hover {
   background-color: var(--border-color-dark);
+  color: var(--text-color-dark);
 }
 
 .mb-btn {
   margin-bottom: 10px;
 }
 
+/* BOTÕES DENTRO DO SIDEBAR */
 .sidebar .btn {
-  display: flex;
-  align-items: center;
   background-color: transparent;
   border: 1px solid var(--border-color-light);
   color: inherit;
   padding: 8px 12px;
+  margin-bottom: 8px;
   border-radius: 30px;
   transition: background-color 0.2s, border-color 0.2s;
 }
@@ -166,11 +208,15 @@ body.dark-mode .sidebar .btn:hover {
   background-color: var(--border-color-dark);
 }
 
+/* ÍCONE DENTRO DO BOTÃO */
 .sidebar .btn i {
   margin-right: 8px;
+  font-size: 1.1em;
 }
 
-/* HISTÓRICO */
+/* =================================
+   HISTÓRICO DE CONVERSAS
+   ================================= */
 .history-container {
   flex-grow: 1;
   overflow-y: auto;
@@ -185,10 +231,12 @@ body.dark-mode .sidebar .btn:hover {
   color: var(--ai-msg-text-light);
 }
 
+/*
 body.dark-mode .history-message {
   background: var(--ai-msg-bg);
-  color: var(--ai-msg-text-dark);
+  color: var(--ai-msg-text-light);
 }
+*/
 
 .history-user-message {
   font-weight: bold;
@@ -198,7 +246,9 @@ body.dark-mode .history-message {
   margin-top: 5px;
 }
 
-/* PERFIL */
+/* =================================
+   PERFIL
+   ================================= */
 .profile-container {
   position: absolute;
   bottom: 0;
@@ -223,7 +273,6 @@ body.dark-mode .profile-container {
   color: inherit;
   font-size: 1em;
   cursor: pointer;
-  text-align: left;
   padding: 5px 0;
 }
 
@@ -242,13 +291,13 @@ body.dark-mode .profile-info {
 }
 
 .text-muted {
-  color: var(--border-color-light);
+  color: var(--border-color-light) !important;
   font-size: 0.9em;
   margin: 4px 0;
 }
 
 body.dark-mode .text-muted {
-  color: var(--border-color-dark);
+  color: var(--border-color-dark) !important;
 }
 
 .short-line-spacing {
@@ -256,6 +305,9 @@ body.dark-mode .text-muted {
   margin: 4px 0 10px;
 }
 
+/* =================================
+   LINK PARA PERFIL DO GITHUB
+   ================================= */
 .github-profile-link {
   display: flex;
   align-items: center;
@@ -272,15 +324,19 @@ body.dark-mode .text-muted {
   margin-right: 8px;
 }
 
-/* CHAT CONTAINER */
+/* =================================
+   CHAT CONTAINER
+   ================================= */
 .chat-container {
   flex: 1;
-  background: transparent; /* Sem fundo */
-  border: none;            /* Sem borda */
+  background: transparent; /* Removido fundo */
+  border: none;            /* Removida borda */
+  border-radius: 10px;
   padding: 20px 10px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  bottom: 60px; /* Espaço para o input flutuante */
 }
 
 @media (max-width: 767.99px) {
@@ -289,9 +345,11 @@ body.dark-mode .text-muted {
   }
 }
 
-/* MENSAGENS */
+/* =================================
+   MENSAGENS
+   ================================= */
 .message {
-  margin-bottom: 12px !important;
+  margin-bottom: 12px;
   padding: 10px 15px;
   border-radius: 12px;
   word-wrap: break-word;
@@ -310,50 +368,31 @@ body.dark-mode .text-muted {
 }
 
 .message.user i {
-  display: none; /* Remove ícone do usuário */
+  display: none; /* Ícone removido para mensagem do usuário */
 }
 
 .message.ai {
-  align-self: flex-start;
-  border-bottom-left-radius: 0;
-  background: transparent; /* Sem fundo */
+  align-self: flex-start; 
+  border-radius: none;
+  background: transparent;
   color: var(--ai-msg-text-light);
   max-width: 100%;
-  line-height: 1.2em;
+  line-height: 1.01em;
   white-space: pre-wrap;
-  padding-left: 40px; /* Espaço para o ícone */
-  position: relative;
-  bottom: 50px;  
 }
 
 body.dark-mode .message.ai {
   color: var(--ai-msg-text-dark);
 }
 
-/* Ícone da IA em círculo */
+/* Icone removido*/
 .message.ai i {
-  position: absolute;
-  top: 8px;  
-  left: 10px;
-  transform: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--border-color-light);
-  color: var(--ai-msg-text-light);
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 16px;
-  transition: background-color 0.3s, color 0.3s;
+  display: none;
 }
 
-body.dark-mode .message.ai i {
-  background-color: var(--border-color-dark);
-  color: var(--ai-msg-text-dark);
-}
-
-/* BLOCO DE CÓDIGO */
+/* =================================
+   BLOCO DE CÓDIGO
+   ================================= */
 .code-block-wrapper {
   position: relative;
   margin-top: 10px;
@@ -407,15 +446,14 @@ body.dark-mode .copy-button {
   border-radius: 5px !important;
   overflow-x: auto;
   font-family: Consolas, "Courier New", monospace;
-  font-size: 0.95rem;
+  font-size: 0.95rem !important;
   line-height: 1.2;
   margin-top: 4px;
   transition: background-color 0.3s;
 }
 
 body.dark-mode .code-block {
-  background-color: var(--ai-msg-bg);
-  /* Mantém mesmo fundo de código em dark para legibilidade */
+  background-color: var(--ai-msg-bg) !important;
 }
 
 .code-block code {
@@ -423,7 +461,9 @@ body.dark-mode .code-block {
   padding: 0;
 }
 
-/* INDICADOR DE DIGITAÇÃO */
+/* =================================
+   INDICADOR DE DIGITAÇÃO
+   ================================= */
 .typing-indicator {
   text-align: center;
   padding: 10px;
@@ -436,23 +476,24 @@ body.dark-mode .typing-indicator {
   color: var(--ai-msg-text-dark);
 }
 
-/* INPUT FLUTUANTE NO RODAPÉ */
+/* =================================
+   INPUT FLUTUANTE NO RODAPÉ
+   ================================= */
 .input-form {
   position: fixed;
-  bottom: 5px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 800px; /* Mesma largura do container */
+  max-width: 790px; 
   display: flex;
   padding: 10px;
   background: var(--chat-bg-light);
   border-top: 1px solid var(--border-color-light);
+  border-radius: 28px;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   transition: background-color 0.3s, border-color 0.3s;
-  border-radius: 25px;
-  bottom: 8px;
 }
 
 body.dark-mode .input-form {
@@ -463,8 +504,7 @@ body.dark-mode .input-form {
 .input-field {
   flex: 1;
   padding: 12px 16px;
- /* border: 1px solid var(--border-color-light); */
-  border: none !important;
+  border: none;
   border-radius: 30px;
   font-size: 1rem;
   outline: none;
@@ -473,7 +513,8 @@ body.dark-mode .input-form {
 
 body.dark-mode .input-field {
   border-color: var(--border-color-dark);
-  background: var(--bg-color-dark);
+/*  background: var(--bg-color-dark); */
+  background: transparent; /* Removido fundo */
   color: var(--text-color-dark);
 }
 
@@ -501,7 +542,9 @@ body.dark-mode .input-field {
   border-width: 0.2rem;
 }
 
-/* ALERTA CUSTOMIZADO */
+/* =================================
+   ALERTA CUSTOMIZADO
+   ================================= */
 .alert-custom {
   padding: 10px;
   border-radius: 15px;
