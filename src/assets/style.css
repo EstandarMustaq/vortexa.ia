@@ -520,7 +520,7 @@ body.dark-mode .input-field {
    ALERTA CUSTOMIZADO
    ================================= */
 .alert-custom {
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 15px;
   position: fixed;
   top: 80px;
