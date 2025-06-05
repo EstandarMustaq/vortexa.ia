@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // Importa o SyntaxHighlighter e registro de linguagens
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
-import { github as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { dracula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function Home() {
   const [theme, setTheme] = useState("light");
@@ -153,26 +153,26 @@ export default function Home() {
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <button
-            className="btn btn-outline-light close-sidebar-btn mb-btn"
+            className="btn  close-sidebar-btn mb-btn"
             onClick={toggleSidebar}
           >
             <i className="bi bi-x icon"></i>
           </button>
-          <button className="btn btn-outline-light mb-btn" onClick={newChat}>
+          <button className="btn mb-btn" onClick={newChat}>
             <i className="bi bi-plus-circle icon me-2"></i>Novo Chat
           </button>
           <button
-            className="btn btn-outline-light mb-btn"
+            className="btn mb-btn"
             onClick={clearHistory}
           >
             <i className="bi bi-trash icon me-2"></i>Excluir Histórico
           </button>
-          <button className="btn btn-outline-light" onClick={shareChat}>
+          <button className="btn" onClick={shareChat}>
             <i className="bi bi-share-fill icon me-2"></i>Compartilhar Chat
           </button>
 
           <div className="history-container" id="historyContainer">
-            <h2 className="text-center mt-4">Histórico de Conversas</h2>
+            <h2 className="text-center mt-4" style={{ fontSize: "1.3rem" }}>Histórico de Conversas</h2>
             <div id="history">
               {chatHistory.map((chat, index) => (
                 <div key={index} className="history-message">
@@ -233,8 +233,8 @@ export default function Home() {
                       const language = match ? match[1] : "texto";
                       const codeText = String(children).replace(/\n$/, "");
                       return (
-                        <div className="code-block-wrapper">
-                          <div className="language-label">{language.toUpperCase()}</div>
+                        <div className="code-block-wrapper code-bock">
+                          <div className="language-label">{language.toLowerCase()}</div>
                           <button
                             className="copy-button"
                             onClick={() => navigator.clipboard.writeText(codeText)}
