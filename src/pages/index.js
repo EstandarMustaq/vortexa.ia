@@ -136,7 +136,7 @@ export default function Home() {
           className="btn toggle-sidebar-btn"
           onClick={toggleSidebar}
         >
-          <i className="bi bi-layout-sidebar-reverse icon"></i>
+          <i className="bi bi-layout-sidebar-inset-reverse icon"></i>
         </button>
 
         {/* Toggle Theme */}
@@ -145,7 +145,7 @@ export default function Home() {
           className="btn toggle-theme-btn"
           onClick={toggleTheme}
         >
-          <i className={`bi ${ theme === "dark" ? "bi-sun" : "bi-moon" } icon`}></i>
+          <i className={`bi ${ theme === "dark" ? "bi-sun-fill" : "bi-moon-fill" } icon`}></i>
         </button>
 
         <h1>Vortexa</h1>
@@ -156,23 +156,23 @@ export default function Home() {
             className="btn close-sidebar-btn mb-btn"
             onClick={toggleSidebar}
           >
-            <i className="bi bi-x icon"></i>
+            <i className="bi bi-x-circle-fill icon"></i>
           </button>
           <button className="btn mb-btn" onClick={newChat}>
-            <i className="bi bi-plus-circle icon me-2"></i>Novo Chat
+            <i className="bi bi-plus-circle-fill icon me-2"></i>Novo Chat
           </button>
           <button
             className="btn mb-btn"
             onClick={clearHistory}
           >
-            <i className="bi bi-trash icon me-2"></i>Excluir Histórico
+            <i className="bi bi-trash3-fill icon me-2"></i>Excluir Histórico
           </button>
           <button className="btn" onClick={shareChat}>
             <i className="bi bi-share-fill icon me-2"></i>Compartilhar Chat
           </button>
 
           <div className="history-container" id="historyContainer">
-            <h2 className="text-center mt-4 mb-3" style={{ fontSize: "1.3rem" }}>Histórico de Conversas</h2>
+            <h2 className="text-center mt-4 mb-4" style={{ fontSize: "1.5rem" }}>Histórico de Conversas</h2>
             <div id="history">
               {chatHistory.map((chat, index) => (
                 <div key={index} className="history-message">
@@ -287,7 +287,7 @@ export default function Home() {
             {loading ? (
               <div className="spinner-border" role="status" aria-hidden="true"></div>
             ) : (
-              <i className="bi bi-arrow-right-circle-fill icon"></i>
+              <i className="bi bi-arrow-right icon"></i>
             )}
           </button>
         </form>
