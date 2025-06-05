@@ -239,7 +239,7 @@ export default function Home() {
                             className="copy-button"
                             onClick={() => navigator.clipboard.writeText(codeText)}
                           >
-                            <span className="bi bi-copy"></span> copiar o código
+                            <span className="bi bi-copy me-1"></span>copiar
                           </button>
                           <SyntaxHighlighter
                             language={language}
