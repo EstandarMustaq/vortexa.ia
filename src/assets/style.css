@@ -59,15 +59,15 @@ body.dark-mode {
   border-radius: 30px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+/*  align-items: center;
+  justify-content: center; */
 }
 
 /* Toggle Theme Button */
 .toggle-theme-btn {
   position: absolute;
   top: 20px;               
-  right: 10px;
+  right: 65px;
   font-size: 1.3em;
   background: none;        
   border: none;            
@@ -86,7 +86,7 @@ body.dark-mode {
 .toggle-sidebar-btn {
   position: absolute;
   top: 20px;               
-  right: 60px;
+  right: 15px;
   font-size: 1.3em;
   background: none;        
   border: none;            
@@ -151,7 +151,7 @@ body.dark-mode .sidebar {
   border: none;           
   border-radius: 0;        
   padding: 0;              
-  font-size: 1.4em;
+  font-size: 1.6em;
   cursor: pointer;
   color: var(--text-color);
   transition: opacity 0.2s;
@@ -177,8 +177,6 @@ body.dark-mode .sidebar {
   cursor: pointer;
   transition: opacity 0.2s;
   margin-bottom: 8px;
-  align-items: none;
-  justify-content: none;
 }
 
 .sidebar .btn:hover {
@@ -351,7 +349,6 @@ body.dark-mode .text-muted {
   color: var(--ai-msg-text-light);
   max-width: 100%;
   line-height: 1.4;
-  white-space: pre-wrap;
 }
 
 body.dark-mode .message.ai {
