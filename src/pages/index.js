@@ -142,10 +142,10 @@ export default function Home() {
         {/* Toggle Theme */}
         <button
           id="toggleTheme"
-          className="btn toogle-theme-btn"
+          className="btn toogle-theme-btn btn-secondary"
           onClick={toggleTheme}
         >
-          <i className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}></i>
+          <i className={`bi ${ theme === "dark" ? "bi-sun" : "bi-moon" } icon`}></i>
         </button>
 
         <h1>Vortexa</h1>
