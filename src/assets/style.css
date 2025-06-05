@@ -148,7 +148,6 @@ body.dark-mode .sidebar {
   align-self: flex-end !important;
   top: 20px;
   right: 10px;
-  position: absolute;
   background: none;       
   border: none;           
   border-radius: 0;        
