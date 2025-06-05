@@ -10,6 +10,9 @@ module.exports = {
   images: {
     domains: ["avatars.githubusercontent.com"],
   },
+  fonts: {
+    domains: ["fonts.googleapis.com"],
+  },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
   webpack: (config, { isServer }) => {
     if (!isServer) {

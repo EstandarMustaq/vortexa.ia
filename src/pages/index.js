@@ -132,20 +132,20 @@ export default function Home() {
       <div className="container">
         {/* Toggle Theme */}
         <button
-          id="toggleTheme"
-          className="btn toggle-theme-btn"
-          onClick={toggleTheme}
-        >
-          <i className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}></i>
-        </button>
-
-        {/* Toggle Sidebar */}
-        <button
           id="toggleSidebar"
           className="btn toggle-sidebar-btn"
           onClick={toggleSidebar}
         >
           <i className="bi bi-layout-sidebar-reverse icon"></i>
+        </button>
+
+        {/* Toggle Sidebar */}
+        <button
+          id="toggleTheme"
+          className="btn toogle-theme-btn"
+          onClick={toggleTheme}
+        >
+          <i className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}></i>
         </button>
 
         <h1>Vortexa</h1>

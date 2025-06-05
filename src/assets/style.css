@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -67,9 +67,9 @@ body.dark-mode {
 /* Toggle Theme Button */
 .toggle-theme-btn {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 10px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   background: transparent;
   border: none;
   color: inherit;
@@ -94,9 +94,9 @@ body.dark-mode .toggle-theme-btn:hover {
 /* Toggle Sidebar Button */
 .toggle-sidebar-btn {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 60px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   background: transparent;
   border: none;
   color: inherit;
@@ -125,7 +125,7 @@ h1 {
   font-size: 1.8rem;
   text-align: left;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--border-color-light);
+  border-bottom: 1.4px solid var(--border-color-light);
   transition: border-color 0.3s;
 }
 
@@ -167,9 +167,11 @@ body.dark-mode .sidebar {
   cursor: pointer;
   color: var(--text-color);
   border: none !important;
-  padding: 6px;
+  padding: 6px 12px;
   border-radius: 30px;
   transition: background-color 0.2s, color 0.3s;
+  align-items: center;
+  text-align: center;
 }
 
 .close-sidebar-btn:hover {
@@ -190,22 +192,22 @@ body.dark-mode .close-sidebar-btn:hover {
   background-color: transparent;
   border: 1px solid var(--border-color-light);
   color: inherit;
-  /*padding: 8px 12px;*/
+  padding: 6px 12px;
   margin-bottom: 8px;
   border-radius: 30px;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
 .sidebar .btn:hover {
-  background-color: var(--border-color-light);
+  background-color: var(--border-color-light) !important;
 }
 
 body.dark-mode .sidebar .btn {
-  border-color: var(--border-color-dark);
+  border-color: var(--border-color-dark) !important;
 }
 
 body.dark-mode .sidebar .btn:hover {
-  background-color: var(--border-color-dark);
+  background-color: var(--border-color-dark) !important;
 }
 
 /* ÍCONE DENTRO DO BOTÃO */
@@ -255,7 +257,6 @@ body.dark-mode .history-message {
   left: 0;
   width: 100%;
   background-color: var(--chat-bg-light);
-  border-top: 1px solid var(--border-color-light);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -264,7 +265,6 @@ body.dark-mode .history-message {
 
 body.dark-mode .profile-container {
   background-color: var(--chat-bg-dark);
-  border-top-color: var(--border-color-dark);
 }
 
 .profile-button {
@@ -336,7 +336,7 @@ body.dark-mode .text-muted {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px; /* Espaçamento inferior para o input */
+  margin-bottom: 50px; /* Espaçamento inferior para o input */
 }
 
 @media (max-width: 767.99px) {
@@ -377,7 +377,7 @@ body.dark-mode .text-muted {
   background: transparent;
   color: var(--ai-msg-text-light);
   max-width: 100%;
-  line-height: 1.2;
+  line-height: 1.4;
   white-space: pre-wrap;
 }
 
@@ -447,7 +447,7 @@ body.dark-mode .copy-button {
   overflow-x: auto;
   font-family: Consolas, "Courier New", monospace;
   font-size: 0.95rem !important;
-  line-height: 1.2;
+  line-height: 1.4;
   margin-top: 4px;
   transition: background-color 0.3s;
 }
@@ -484,7 +484,7 @@ body.dark-mode .typing-indicator {
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 95%;
+  width: 96%;
   max-width: 800px; 
   display: flex;
   padding: 10px;
@@ -494,6 +494,7 @@ body.dark-mode .typing-indicator {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   transition: background-color 0.3s, border-color 0.3s;
+  color: var(--text-color-dark);
 }
 
 body.dark-mode .input-form {
@@ -512,7 +513,7 @@ body.dark-mode .input-form {
 }
 
 body.dark-mode .input-field {
-  border-color: var(--border-color-dark);
+ /* border-color: var(--border-color-dark); */
 /*  background: var(--bg-color-dark); */
   background: transparent; /* Removido fundo */
   color: var(--text-color-dark) !important;
