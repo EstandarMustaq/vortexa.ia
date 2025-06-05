@@ -130,7 +130,7 @@ export default function Home() {
         <title>Vortexa</title>
       </Head>
       <div className="container">
-        {/* Toggle Theme */}
+        {/* Toggle Sidebar */}
         <button
           id="toggleSidebar"
           className="btn toggle-sidebar-btn"
@@ -139,7 +139,7 @@ export default function Home() {
           <i className="bi bi-layout-sidebar-reverse icon"></i>
         </button>
 
-        {/* Toggle Sidebar */}
+        {/* Toggle Theme */}
         <button
           id="toggleTheme"
           className="btn toogle-theme-btn"
