@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // Importa o SyntaxHighlighter e registro de linguagens
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
-import { darkula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { darcula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function Home() {
   const [theme, setTheme] = useState("light");
