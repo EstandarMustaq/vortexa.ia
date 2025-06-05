@@ -147,7 +147,7 @@ body.dark-mode .sidebar {
 .close-sidebar-btn {
   align-self: flex-end !important;
   margin-top: -16px !important;
-  right: -10 !important;
+  margin-right: -12 !important;
   position: relative;
   background: none;       
   border: none;           
