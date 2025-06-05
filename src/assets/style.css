@@ -67,8 +67,8 @@ body.dark-mode {
 .toggle-theme-btn {
   position: absolute;
   top: 20px;               
-  right: 65px;
-  font-size: 1.3em;
+  right: 60px;
+  font-size: 1.4em;
   background: none;        
   border: none;            
   border-radius: 0;        
@@ -86,8 +86,8 @@ body.dark-mode {
 .toggle-sidebar-btn {
   position: absolute;
   top: 20px;               
-  right: 15px;
-  font-size: 1.3em;
+  right: 18px;
+  font-size: 1.4em;
   background: none;        
   border: none;            
   border-radius: 0;        
@@ -106,10 +106,10 @@ body.dark-mode {
    ================================= */
 h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   text-align: left;
   padding-bottom: 10px;
-  border-bottom: 1.4px solid var(--border-color-light);
+  border-bottom: 1.5px solid var(--border-color-light);
   transition: border-color 0.3s;
 }
 
@@ -145,7 +145,8 @@ body.dark-mode .sidebar {
 }
 
 .close-sidebar-btn {
-  align-self: flex-end;
+  align-self: flex-end !important;
+  right: 12px;
   position: relative;      
   background: none;       
   border: none;           
@@ -155,6 +156,8 @@ body.dark-mode .sidebar {
   cursor: pointer;
   color: var(--text-color);
   transition: opacity 0.2s;
+  align-items: center;
+  justify-content: center;
 }
 
 .close-sidebar-btn:hover {
@@ -185,7 +188,7 @@ body.dark-mode .sidebar {
 
 .sidebar .btn i {
   margin-right: 8px;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 /* =================================
@@ -308,7 +311,7 @@ body.dark-mode .text-muted {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 90px; /* Espaçamento inferior para o input */
+  margin-bottom: 100px; /* Espaçamento inferior para o input */
 }
 
 @media (max-width: 767.99px) {
@@ -335,6 +338,7 @@ body.dark-mode .text-muted {
   background-color: var(--user-msg-bg);
   color: var(--user-msg-text);
   align-self: flex-end !important;
+  justify-self: flex-end !important;
   max-width: 75%;
 }
 
@@ -479,6 +483,7 @@ body.dark-mode .input-form {
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s;
+  background: transparent;
 }
 
 body.dark-mode .input-field {
@@ -514,7 +519,7 @@ body.dark-mode .input-field {
    ALERTA CUSTOMIZADO
    ================================= */
 .alert-custom {
-  padding: 10px;
+  padding: 20px;
   border-radius: 15px;
   position: fixed;
   top: 80px;

@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // Importa o SyntaxHighlighter e registro de linguagens
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { darkula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function Home() {
   const [theme, setTheme] = useState("light");
@@ -172,7 +172,7 @@ export default function Home() {
           </button>
 
           <div className="history-container" id="historyContainer">
-            <h2 className="text-center mt-4" style={{ fontSize: "1.3rem" }}>Histórico de Conversas</h2>
+            <h2 className="text-center mt-4 mb-3" style={{ fontSize: "1.3rem" }}>Histórico de Conversas</h2>
             <div id="history">
               {chatHistory.map((chat, index) => (
                 <div key={index} className="history-message">
@@ -279,7 +279,7 @@ export default function Home() {
             required
             autoComplete="off"
             autoCorrect="off"
-            autoCapitalize="off"
+            autoCapitalize="on"
             spellCheck="false"
             aria-label="Digite sua pergunta"
           />
