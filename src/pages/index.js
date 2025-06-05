@@ -142,7 +142,7 @@ export default function Home() {
         {/* Toggle Theme */}
         <button
           id="toggleTheme"
-          className="btn toogle-theme-btn btn-secondary"
+          className="btn toggle-theme-btn"
           onClick={toggleTheme}
         >
           <i className={`bi ${ theme === "dark" ? "bi-sun" : "bi-moon" } icon`}></i>
@@ -153,7 +153,7 @@ export default function Home() {
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <button
-            className="btn  close-sidebar-btn mb-btn"
+            className="btn close-sidebar-btn mb-btn"
             onClick={toggleSidebar}
           >
             <i className="bi bi-x icon"></i>
