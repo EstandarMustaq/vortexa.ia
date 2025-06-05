@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.4;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -60,16 +60,16 @@ body.dark-mode {
   border-radius: 30px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Toggle Theme Button */
 .toggle-theme-btn {
   position: absolute;
-  top: 0;
+  top: 25px;
   right: 10px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   background: transparent;
   border: none;
   color: inherit;
@@ -94,9 +94,9 @@ body.dark-mode .toggle-theme-btn:hover {
 /* Toggle Sidebar Button */
 .toggle-sidebar-btn {
   position: absolute;
-  top: 0;
+  top: 25px;
   right: 60px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   background: transparent;
   border: none;
   color: inherit;
@@ -166,7 +166,7 @@ body.dark-mode .sidebar {
   font-size: 1.4em;
   cursor: pointer;
   color: var(--text-color);
-  border: none;
+  border: none !important;
   padding: 6px;
   border-radius: 30px;
   transition: background-color 0.2s, color 0.3s;
@@ -190,7 +190,7 @@ body.dark-mode .close-sidebar-btn:hover {
   background-color: transparent;
   border: 1px solid var(--border-color-light);
   color: inherit;
-  padding: 8px 12px;
+  /*padding: 8px 12px;*/
   margin-bottom: 8px;
   border-radius: 30px;
   transition: background-color 0.2s, border-color 0.2s;
@@ -336,7 +336,7 @@ body.dark-mode .text-muted {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  bottom: 60px; /* Espaço para o input flutuante */
+  margin-bottom: 30px; /* Espaçamento inferior para o input */
 }
 
 @media (max-width: 767.99px) {
@@ -377,7 +377,7 @@ body.dark-mode .text-muted {
   background: transparent;
   color: var(--ai-msg-text-light);
   max-width: 100%;
-  line-height: 1.01em;
+  line-height: 1.2;
   white-space: pre-wrap;
 }
 
@@ -484,8 +484,8 @@ body.dark-mode .typing-indicator {
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 790px; 
+  width: 95%;
+  max-width: 800px; 
   display: flex;
   padding: 10px;
   background: var(--chat-bg-light);
@@ -515,7 +515,7 @@ body.dark-mode .input-field {
   border-color: var(--border-color-dark);
 /*  background: var(--bg-color-dark); */
   background: transparent; /* Removido fundo */
-  color: var(--text-color-dark);
+  color: var(--text-color-dark) !important;
 }
 
 .send-button {

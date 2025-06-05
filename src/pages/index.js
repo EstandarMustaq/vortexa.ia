@@ -133,7 +133,7 @@ export default function Home() {
         {/* Toggle Theme */}
         <button
           id="toggleTheme"
-          className="btn btn-outline-light toggle-theme-btn"
+          className="btn toggle-theme-btn"
           onClick={toggleTheme}
         >
           <i className={`bi ${theme === "dark" ? "bi-sun" : "bi-moon"} icon`}></i>
@@ -142,7 +142,7 @@ export default function Home() {
         {/* Toggle Sidebar */}
         <button
           id="toggleSidebar"
-          className="btn btn-outline-light toggle-sidebar-btn"
+          className="btn toggle-sidebar-btn"
           onClick={toggleSidebar}
         >
           <i className="bi bi-layout-sidebar-reverse icon"></i>
@@ -190,7 +190,7 @@ export default function Home() {
             </button>
             {profileVisible && (
               <div className="profile-info">
-              {/* <h5 className="d-flex align-items-center">Vortexa</h5> */}
+                <h5 className="d-flex align-items-center">Vortexa</h5>
                 <p className="text-muted">Versão 0.7.3-beta</p>
                 <p className="short-line-spacing">Powered by EstandarMustaq</p>
                 <a
