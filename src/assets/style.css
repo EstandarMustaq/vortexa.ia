@@ -361,10 +361,11 @@ body.dark-mode .message.ai {
   color: var(--ai-msg-text-dark);
 }
 
-/* Icone removido*/
+/* Icone removido
 .message.ai i {
-  display: none;
+  display: none; 
 }
+*/ 
 
 /* =================================
    ÍCONES NO RODAPÉ
@@ -373,6 +374,7 @@ body.dark-mode .message.ai {
   display: flex;
   gap: 10px;
   margin-top: 8px;
+  left: 0;
 }
 
 .footer-icon-btn {
