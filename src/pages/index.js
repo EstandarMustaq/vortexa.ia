@@ -241,7 +241,6 @@ export default function Home() {
 
               {/* Mensagem da IA */}
               <div className="message ai">
-                <i className="bi bi-brilliance me-2"></i>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   skipHtml={true}
@@ -263,7 +262,7 @@ export default function Home() {
                             language={language}
                             style={codeStyle}
                             PreTag="div"
-                            customStyle={{ margin: 0, paddingTop: "30px", borderRadius: "12px" }}
+                            customStyle={{ margin: 0, paddingTop: "34px", borderRadius: "12px" }}
                           >
                           {/* Exibe o código formatado */}
                             {codeText}
@@ -293,7 +292,7 @@ export default function Home() {
                     title="Reenviar mensagem do usuário"
                     onClick={() => handleResubmit(chat.user)}
                   >
-                    <i className="bi bi-arrow-repeat"></i>
+                    <i className="bi bi-arrow-repeat" style={{ fontSize: "1.2rem" }}></i>
                   </button>
                 </div>
               </div>
@@ -303,7 +302,7 @@ export default function Home() {
           {/* Typing-indicator dentro do chat-container */}
           {loading && (
             <div className="message ai typing-indicator">
-              <i className="bi bi-brilliance me-2"></i>
+              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.8rem" }}></i>
               <span className="dot dot1"></span>
               <span className="dot dot2"></span>
               <span className="dot dot3"></span>
