@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-// Importa o SyntaxHighlighter e registro de linguagens
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { darcula as codeStyle } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
@@ -14,6 +13,7 @@ export default function Home() {
   const [profileVisible, setProfileVisible] = useState(false);
   const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState(""); // controla o texto do input
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
@@ -38,7 +38,6 @@ export default function Home() {
   const applyTheme = (selectedTheme) => {
     const isDarkMode = selectedTheme === "dark";
     const body = document.body;
-
     if (isDarkMode) {
       body.classList.add("dark-mode");
     } else {
@@ -90,15 +89,10 @@ export default function Home() {
     setProfileVisible(!profileVisible);
   };
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const queryInput = document.getElementById("queryInput");
-    const userMessage = queryInput.value.trim();
-    if (!userMessage) return;
-
+  // Envia a mensagem do usuário à IA
+  const sendUserMessage = async (userMessage) => {
     setChatHistory((prev) => [...prev, { user: userMessage, ai: "" }]);
     setLoading(true);
-    queryInput.value = "";
 
     try {
       const response = await fetch("/api/ask", {
@@ -122,7 +116,29 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Ao submeter o formulário
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const userMessage = inputValue.trim();
+    if (!userMessage) return;
+    setInputValue("");                   // limpa o input
+    await sendUserMessage(userMessage);   // envia para IA
   }
+
+  // Copia texto para a área de transferência
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => showAlert("Texto copiado para a área de transferência!", "success"),
+      () => showAlert("Falha ao copiar o texto.", "error")
+    );
+  };
+
+  // Reenvia a última mensagem do usuário
+  const handleResubmit = (previousUserMessage) => {
+    sendUserMessage(previousUserMessage);
+  };
 
   return (
     <>
@@ -145,26 +161,22 @@ export default function Home() {
           className="btn toggle-theme-btn"
           onClick={toggleTheme}
         >
-          <i className={`bi ${ theme === "dark" ? "bi-sun-fill" : "bi-moon-fill" } icon`}></i>
+          <i
+            className={`bi ${theme === "dark" ? "bi-sun-fill" : "bi-moon-fill"} icon`}
+          ></i>
         </button>
 
         <h1>Vortexa</h1>
 
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-          <button
-            className="btn close-sidebar-btn mb-btn"
-            onClick={toggleSidebar}
-          >
+          <button className="btn close-sidebar-btn mb-btn" onClick={toggleSidebar}>
             <i className="bi bi-x-circle-fill icon"></i>
           </button>
           <button className="btn mb-btn" onClick={newChat}>
             <i className="bi bi-plus-circle-fill icon me-2"></i>Novo Chat
           </button>
-          <button
-            className="btn mb-btn"
-            onClick={clearHistory}
-          >
+          <button className="btn mb-btn" onClick={clearHistory}>
             <i className="bi bi-trash3-fill icon me-2"></i>Excluir Histórico
           </button>
           <button className="btn" onClick={shareChat}>
@@ -172,7 +184,9 @@ export default function Home() {
           </button>
 
           <div className="history-container" id="historyContainer">
-            <h2 className="text-center mt-4 mb-4" style={{ fontSize: "1.5rem" }}>Histórico de Conversas</h2>
+            <h2 className="text-center mt-4 mb-4" style={{ fontSize: "1.5rem" }}>
+              Histórico de Conversas
+            </h2>
             <div id="history">
               {chatHistory.map((chat, index) => (
                 <div key={index} className="history-message">
@@ -185,7 +199,7 @@ export default function Home() {
 
           <div className="profile-container">
             <button className="profile-button" onClick={handleProfileClick}>
-              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.3em" }}></i>
+              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.4em" }}></i>
               <span>Vortexa</span>
             </button>
             {profileVisible && (
@@ -218,22 +232,26 @@ export default function Home() {
         {/* Chat Container */}
         <div className="chat-container" id="chatContainer" ref={chatContainerRef}>
           {chatHistory.map((chat, index) => (
-            <div key={index}>
+            <div key={index} className="chat-pair">
+              {/* Mensagem do Usuário */}
               <div className="message user">
                 <i className="bi bi-person-fill me-2"></i>
                 {chat.user}
               </div>
+
+              {/* Mensagem da IA */}
               <div className="message ai">
                 <i className="bi bi-brilliance me-2"></i>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
+                  skipHtml={true}
                   components={{
                     code({ node, inline, className, children, ...props }) {
                       const match = /language-(\w+)/.exec(className || "");
                       const language = match ? match[1] : "texto";
                       const codeText = String(children).replace(/\n$/, "");
                       return (
-                        <div className="code-block-wrapper code-bock">
+                        <div className="code-block-wrapper">
                           <div className="language-label">{language.toLowerCase()}</div>
                           <button
                             className="copy-button"
@@ -245,8 +263,9 @@ export default function Home() {
                             language={language}
                             style={codeStyle}
                             PreTag="div"
-                            customStyle={{ margin: 0, paddingTop: "30px" }}
+                            customStyle={{ margin: 0, paddingTop: "15px", borderRadius: "10px" }}
                           >
+                          {/* Exibe o código formatado */}
                             {codeText}
                           </SyntaxHighlighter>
                         </div>
@@ -256,17 +275,41 @@ export default function Home() {
                 >
                   {chat.ai}
                 </ReactMarkdown>
+
+                {/* Ícones de copiar e reenviar */}
+                <div className="ai-footer-icons">
+                  {/* Copiar toda a resposta da IA */}
+                  <button
+                    className="footer-icon-btn"
+                    title="Copiar resposta da IA"
+                    onClick={() => copyToClipboard(chat.ai)}
+                  >
+                    <i className="bi bi-copy"></i>
+                  </button>
+
+                  {/* Reenviar a mesma mensagem do usuário */}
+                  <button
+                    className="footer-icon-btn"
+                    title="Reenviar mensagem do usuário"
+                    onClick={() => handleResubmit(chat.user)}
+                  >
+                    <i className="bi bi-arrow-repeat"></i>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
-        </div>
 
-        {/* Indicador de digitação */}
-        {loading && (
-          <div className="typing-indicator" id="typingIndicator">
-            <i className="bi bi-gear fa-spin"></i> Vortexa está pensando...
-          </div>
-        )}
+          {/* Typing-indicator dentro do chat-container */}
+          {loading && (
+            <div className="message ai typing-indicator">
+              <i className="bi bi-brilliance me-2"></i>
+              <span className="dot dot1"></span>
+              <span className="dot dot2"></span>
+              <span className="dot dot3"></span>
+            </div>
+          )}
+        </div>
 
         {/* Input fixo no rodapé */}
         <form className="input-form" id="queryForm" onSubmit={handleSubmit}>
@@ -275,6 +318,8 @@ export default function Home() {
             className="input-field"
             id="queryInput"
             placeholder="Pergunte alguma coisa"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             disabled={loading}
             required
             autoComplete="off"
@@ -282,8 +327,13 @@ export default function Home() {
             autoCapitalize="on"
             spellCheck="false"
             aria-label="Digite sua pergunta"
+            aria-describedby="queryInputHelp"
           />
-          <button type="submit" className="send-button" disabled={loading}>
+          <button
+            type="submit"
+            className="send-button"
+            disabled={loading || !inputValue.trim()} /* desabilita se vazio ou carregando */
+          >
             {loading ? (
               <div className="spinner-border" role="status" aria-hidden="true"></div>
             ) : (

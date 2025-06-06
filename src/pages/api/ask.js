@@ -36,6 +36,7 @@ export default async function handler(req, res) {
         top_p: 1,
         stream: false, 
         stop: null,
+        seed: 1,
       });
 
       const aiMessage = chatCompletion.choices?.[0]?.message?.content;
