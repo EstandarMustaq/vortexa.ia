@@ -334,7 +334,7 @@ export default function Home() {
             disabled={loading || !inputValue.trim()} /* desabilita se vazio ou carregando */
           >
             {loading ? (
-              <div className="spinner-border" role="status" aria-hidden="true"></div>
+              <div className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></div>
             ) : (
               <i className="bi bi-arrow-right icon"></i>
             )}

@@ -305,7 +305,7 @@ body.dark-mode .text-muted {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 120px; /* Espaçamento inferior para o input */
+  margin-bottom: 100px; /* Espaçamento inferior para o input */
 }
 
 @media (max-width: 767.99px) {
@@ -542,23 +542,26 @@ body.dark-mode .input-field {
   cursor: not-allowed;
 }
 
-.spinner-border {
-  width: 1.4rem;
-  height: 1.4rem;
-  border-width: 0.2rem;
-  border-color: var(--user-msg-bg) transparent transparent;
-  animation: loading 1s linear infinite;
+spinner-grow {
+  background: var(--user-msg-bg);
+  animation: spinner-grow 1s infinite ease-in-out;
 }
 
 /* =================================
    ANIMAÇÃO DE CARREGAMENTO
    ================================= */ 
-@keyframes loading {
+@keyframes spinner-grow {
   0% {
-    transform: rotate(0deg);
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
   }
   100% {
-    transform: rotate(360deg);
+    transform: scale(0);
+    opacity: 0.5;
   }
 }
 
