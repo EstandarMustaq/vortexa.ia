@@ -91,7 +91,7 @@ export default function Home() {
 
   // Envia a mensagem do usuário à IA
   const sendUserMessage = async (userMessage) => {
-    setChatHistory((prev) => [...prev, { user: userMessage, ai: "", hideIcons: false }]);
+    setChatHistory((prev) => [...prev, { user: userMessage, ai: "", hideIcons: true }]);
     setLoading(true);
 
     try {
@@ -268,7 +268,7 @@ export default function Home() {
                             language={language}
                             style={codeStyle}
                             PreTag="div"
-                            customStyle={{ margin: 0, paddingTop: "35px", borderRadius: "20px", fontFamily: "Consolas, Courier News, monospace" }}
+                            customStyle={{ margin: 0, paddingTop: "35px", borderRadius: "16px", fontFamily: "Consolas, Courier News, monospace" }}
                           >
                           {/* Exibe o código formatado */}
                             {codeText}

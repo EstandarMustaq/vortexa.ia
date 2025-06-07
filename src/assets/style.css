@@ -333,7 +333,7 @@ body.dark-mode .text-muted {
   align-self: flex-end !important;
   justify-self: flex-end !important;
   max-width: 70%;
-  border-radius: 20px;
+  border-radius: 26px;
 }
 
 .message.user i {
