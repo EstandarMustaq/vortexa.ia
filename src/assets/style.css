@@ -542,29 +542,6 @@ body.dark-mode .input-field {
   cursor: not-allowed;
 }
 
-spinner-grow {
-  background: var(--user-msg-bg) !important;
-  animation: spinner-grow 1s infinite ease-in-out;
-}
-
-/* =================================
-   ANIMAÇÃO DE CARREGAMENTO
-   ================================= */ 
-@keyframes spinner-grow {
-  0% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-}
-
 /* =================================
    ALERTA CUSTOMIZADO
    ================================= */
