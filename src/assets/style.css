@@ -14,7 +14,8 @@
   --chat-bg-dark: #495057;
   --border-color-light: #dee2e6;
   --border-color-dark: #6c757d;
-  --user-msg-bg: #007bff;
+  --user-msg-bg: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+/* --user-msg-bg: linear-gradient(135deg, #007bff 0%, #00d4ff 100%); */
   --user-msg-text: #ffffff;
   --ai-msg-bg: #e9ecef;
   --ai-msg-text-light: #000000;

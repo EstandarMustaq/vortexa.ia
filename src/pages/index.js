@@ -292,7 +292,7 @@ export default function Home() {
                     title="Reenviar mensagem do usuário"
                     onClick={() => handleResubmit(chat.user)}
                   >
-                    <i className="bi bi-arrow-repeat" style={{ fontSize: "1.2rem" }}></i>
+                    <i className="bi bi-arrow-repeat" style={{ fontSize: "1.4rem" }}></i>
                   </button>
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default function Home() {
           {/* Typing-indicator dentro do chat-container */}
           {loading && (
             <div className="message ai typing-indicator">
-              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.8rem" }}></i>
+              <i className="bi bi-brilliance me-2" style={{ fontSize: "1.6rem" }}></i>
               <span className="dot dot1"></span>
               <span className="dot dot2"></span>
               <span className="dot dot3"></span>
