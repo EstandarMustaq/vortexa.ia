@@ -91,7 +91,7 @@ export default function Home() {
 
   // Envia a mensagem do usuário à IA
   const sendUserMessage = async (userMessage) => {
-    setChatHistory((prev) => [...prev, { user: userMessage, ai: "" }]);
+    setChatHistory((prev) => [...prev, { user: userMessage, ai: "", hideIcons: false }]);
     setLoading(true);
 
     try {
@@ -103,14 +103,16 @@ export default function Home() {
       const result = await response.json();
       setChatHistory((prev) => {
         const copy = [...prev];
-        copy[copy.length - 1].ai = result.response;
+        const last = copy.length - 1;
+        copy[last] = { ...copy[last], ai: result.response, hideIcons: false };
         return copy;
       });
     } catch (err) {
       console.error("Erro na requisição:", err);
       setChatHistory((prev) => {
         const copy = [...prev];
-        copy[copy.length - 1].ai = "Desculpe, não consegui processar sua mensagem.";
+        const last = copy.length - 1;
+        copy[last] = { ...copy[last], ai: "Desculpe, não consegui processar sua mensagem.", hideIcons: false };
         return copy;
       });
     } finally {
@@ -136,7 +138,11 @@ export default function Home() {
   };
 
   // Reenvia a última mensagem do usuário
-  const handleResubmit = (previousUserMessage) => {
+  const handleResubmit = (previousUserMessage, idx) => {
+    setChatHistory((prev) =>
+      prev.map((item, i) => (i === idx ? { ...item, hideIcons: true } : item))
+    );
+
     sendUserMessage(previousUserMessage);
   };
 
@@ -171,10 +177,10 @@ export default function Home() {
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <button className="btn close-sidebar-btn mb-btn" onClick={toggleSidebar}>
-            <i className="bi bi-x-circle-fill icon"></i>
+            <i className="bi bi-x icon"></i>
           </button>
           <button className="btn mb-btn" onClick={newChat}>
-            <i className="bi bi-plus-circle-fill icon me-2"></i>Novo Chat
+            <i className="bi bi-pencil-square icon me-2"></i>Novo Chat
           </button>
           <button className="btn mb-btn" onClick={clearHistory}>
             <i className="bi bi-trash3-fill icon me-2"></i>Excluir Histórico
@@ -184,7 +190,7 @@ export default function Home() {
           </button>
 
           <div className="history-container" id="historyContainer">
-            <h2 className="text-center mt-4 mb-4" style={{ fontSize: "1.5rem" }}>
+            <h2 className="text-center mt-3 mb-4" style={{ fontSize: "1.5rem" }}>
               Histórico de Conversas
             </h2>
             <div id="history">
@@ -262,7 +268,7 @@ export default function Home() {
                             language={language}
                             style={codeStyle}
                             PreTag="div"
-                            customStyle={{ margin: 0, paddingTop: "34px", borderRadius: "12px", fontFamily: "Consolas, Courier News, monospace" }}
+                            customStyle={{ margin: 0, paddingTop: "35px", borderRadius: "20px", fontFamily: "Consolas, Courier News, monospace" }}
                           >
                           {/* Exibe o código formatado */}
                             {codeText}
@@ -276,7 +282,9 @@ export default function Home() {
                 </ReactMarkdown>
 
                 {/* Ícones de copiar e reenviar */}
+                {!chat.hideIcons && (
                 <div className="ai-footer-icons">
+
                   {/* Copiar toda a resposta da IA */}
                   <button
                     className="footer-icon-btn"
@@ -295,6 +303,7 @@ export default function Home() {
                     <i className="bi bi-arrow-repeat" style={{ fontSize: "1.4rem" }}></i>
                   </button>
                 </div>
+                )}
               </div>
             </div>
           ))}
