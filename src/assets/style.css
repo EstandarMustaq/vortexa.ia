@@ -543,7 +543,7 @@ body.dark-mode .input-field {
 }
 
 spinner-grow {
-  background: var(--user-msg-bg);
+  background: var(--user-msg-bg) !important;
   animation: spinner-grow 1s infinite ease-in-out;
 }
 
