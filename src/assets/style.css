@@ -447,9 +447,9 @@ body.dark-mode .typing-indicator {
   background: var(--user-msg-bg);
   border-radius: 50%;
   display: inline-block;
-  height: 8px;
+  height: 10px;
   margin: 0 2px;
-  width: 8px;
+  width: 10px;
   opacity: 0.3;
   animation: blink 1s infinite ease-in-out both;
 }
@@ -540,6 +540,11 @@ body.dark-mode .input-field {
 .send-button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+spinner-grow {
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 /* =================================
