@@ -337,11 +337,12 @@ body.dark-mode .text-muted {
 }
 
 .message.user {
-  background-color: var(--user-msg-bg);
+  background: var(--user-msg-bg);
   color: var(--user-msg-text);
   align-self: flex-end !important;
   justify-self: flex-end !important;
   max-width: 75%;
+  
 }
 
 .message.user i {
@@ -552,7 +553,7 @@ body.dark-mode .input-field {
    BOTÃO DE ENVIO
    ================================= */
 .send-button {
-  background-color: var(--user-msg-bg);
+  background: var(--user-msg-bg);
   border: none;
   color: var(--user-msg-text);
   margin-left: 8px;
