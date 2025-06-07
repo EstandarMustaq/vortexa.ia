@@ -262,7 +262,7 @@ export default function Home() {
                             language={language}
                             style={codeStyle}
                             PreTag="div"
-                            customStyle={{ margin: 0, paddingTop: "34px", borderRadius: "12px" }}
+                            customStyle={{ margin: 0, paddingTop: "34px", borderRadius: "12px", fontFamily: "Consolas, Courier News, monospace" }}
                           >
                           {/* Exibe o código formatado */}
                             {codeText}
