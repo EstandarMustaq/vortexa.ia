@@ -406,7 +406,7 @@ body.dark-mode .language-label {
 .copy-button {
   position: absolute;
   top: 6px;
-  right: 6px;
+  right: 10px;
   background-color: var(--border-color-light);
   border: none;
   border-radius: 4px;

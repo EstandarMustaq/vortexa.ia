@@ -180,7 +180,7 @@ export default function Home() {
             <i className="bi bi-x icon"></i>
           </button>
           <button className="btn mb-btn" onClick={newChat}>
-            <i className="bi bi-pencil-square icon me-2"></i>Novo Chat
+            <i className="bi bi-plus-circle-fill icon me-2"></i>Novo Chat
           </button>
           <button className="btn mb-btn" onClick={clearHistory}>
             <i className="bi bi-trash3-fill icon me-2"></i>Excluir Histórico
